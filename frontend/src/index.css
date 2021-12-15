@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	margin: 0;
+	font-family: "open sans";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@layer components {
+	.toolbar-icons {
+		@apply flex items-center gap-1;
+	}
+	.toolbar-icons > svg {
+		@apply text-yellow-700 stroke-current;
+	}
+
+	.features {
+		@apply flex gap-3 border border-yellow-700;
+	}
+	.features > div:first-child {
+		@apply border-r border-yellow-700 p-3;
+	}
+	.features > div:first-child > svg {
+		@apply h-14 w-14;
+	}
+	.features > div:last-child {
+		@apply p-1;
+	}
+	.features > div:last-child > p {
+		@apply text-yellow-800;
+	}
+	.features > div:last-child > h2 {
+		@apply text-xl font-semibold;
+	}
+}
+
+.back {
+	background-color: black;
+}
+
+.hero {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url("./asset/hero.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 80vh;
+	width: 100%;
+}
+
+.books {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url("./asset/books.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.practice,
+.services {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url("./asset/mantell.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.underlines::before {
+	content: "";
+	position: absolute;
+	width: 50%;
+	left: 25%;
+	bottom: 0;
+	border-bottom: 3px solid #b45309;
+}
+
+.services {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url("./asset/hammer.jpg");
+}
