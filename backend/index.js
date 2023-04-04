@@ -17,28 +17,30 @@ app.use(cors())
 app.use("/api/user", userRoute)
 app.use("/api/appointment", appointmentRoute)
 
-const filePath = path.join(__dirname, "..", "frontend", "build")
+// const filePath = path.join(__dirname, "..", "frontend", "build")
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(filePath)))
+    app.use(express.static(path.join(__dirname, "../frontend/build")))
 
-	app.get("*", (req, res) => {
-		res.sendFile(path.join(filePath, "index.html"))
-	})
+    app.get("*", (req, res) => {
+        res.sendFile(
+            path.resolve(__dirname, "../", "frontend", "build", "index.html")
+        )
+    })
 }
 
 const notFound = (req, res, next) => {
-	const error = new Error(`Not Found - ${req.originalUrl}`)
-	res.status(404)
-	next(error)
+    const error = new Error(`Not Found - ${req.originalUrl}`)
+    res.status(404)
+    next(error)
 }
 
 const errorHandler = (err, req, res, next) => {
-	const statusCode = res.statusCode === 200 ? 500 : res.statusCode
-	res.status(statusCode)
-	res.json({
-		message: err.message,
-	})
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode
+    res.status(statusCode)
+    res.json({
+        message: err.message,
+    })
 }
 
 app.use(notFound)
