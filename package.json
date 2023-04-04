@@ -12,7 +12,8 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"concurrently": "^6.4.0"
+		"concurrently": "^6.4.0",
+		"nodemon": "^2.0.22"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
