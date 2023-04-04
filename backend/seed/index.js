@@ -1,15 +1,18 @@
-import Appointment from "../model/appointmentSchema"
-import User from "../model/userSchema"
+require("dotenv").config()
+const bcrypt = require("bcryptjs")
+const Appointment = require("../model/appointmentSchema")
+const User = require("../model/userSchema")
+const db = require("../model/config")
 
-const users = [
+const people = [
     {
-        name: "Barr. Bob Fisher",
+        name: "Bob Fisher",
         email: "bobfisher@mail.com",
         password: "12345",
         isAdmin: true,
     },
     {
-        name: "Esq. Mike Thomas",
+        name: "Mike Thomas",
         email: "t@m.com",
         password: "12345",
         isAdmin: true,
@@ -22,7 +25,7 @@ const users = [
     },
 ]
 
-export const clearDb = async () => {
+const clearDb = async () => {
     try {
         await User.deleteMany()
         await Appointment.deleteMany()
@@ -31,16 +34,20 @@ export const clearDb = async () => {
     }
 }
 
+module.exports = { clearDb }
+
 const seedData = async () => {
     try {
+        await db()
+
         await clearDb()
 
         const salt = await bcrypt.genSalt(10)
 
         await Promise.all(
-            users.map(async (user) => {
-                user.password = await bcrypt.hash(password, salt)
-                User.create(user)
+            people.map(async (person) => {
+                person.password = await bcrypt.hash(person.password, salt)
+                await User.create(person)
             })
         )
     } catch (error) {

@@ -1,3 +1,4 @@
-import { clearDb } from "."
+const { clearDb } = require(".")
+const clearAll = () => clearDb().finally(process.exit)
 
-export const clearAll = () => clearDb().finally(process.exit)
+clearAll()
